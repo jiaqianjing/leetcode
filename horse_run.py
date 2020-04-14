@@ -5,38 +5,36 @@
 """
 # 这种退回操作一般就使用嵌套
 
-def patrol(board, row, col, step=1):
+def horse_run(board, row, col, step=1):
     # 棋子不能跳出边界，且不能走重复, board[row][col] = 0 表明重来没有走过
-    if 0 <= row < SIZE and 0 <= col < SIZE and board[row][col] == 0:
+    if 0<=row<ROWS and 0<=col<COLS and board[row][col] == 0:
         board[row][col] = step
         global total
-        if step == SIZE * SIZE:
+        if step == ROWS*COLS:
             total += 1
             print("the way {} is: ".format(total))
-            print("board: {}".format(board))
+            #print("board: {}".format(board))
         # 棋子可以走的方向：
         # (1, 2) (2, 1) (-1, 2) (-2, 1)
-        # (1, -2) (2, -1) (-1, -2) (-2, -1)
-        patrol(board, row + 1, col + 2, step+1)
-        patrol(board, row + 2, col + 1, step+1)
-        patrol(board, row - 1, col + 2, step+1)
-        patrol(board, row - 2, col + 1, step+1)
-        patrol(board, row + 1, col - 2, step+1)
-        patrol(board, row + 2, col - 1, step+1)
-        patrol(board, row - 1, col - 2, step+1)
-        patrol(board, row - 2, col - 1, step+1)
+        # (1, -2) (2, -1) (-1, -2) (-2, -1))
+        horse_run(board, row + 1, col + 2, step+1)
+        horse_run(board, row + 2, col + 1, step+1)
+        horse_run(board, row - 1, col + 2, step+1)
+        horse_run(board, row - 2, col + 1, step+1)
+        horse_run(board, row + 1, col - 2, step+1)
+        horse_run(board, row + 2, col - 1, step+1)
+        horse_run(board, row - 1, col - 2, step+1)
+        horse_run(board, row - 2, col - 1, step+1)
         # 所有的方向都试过后，如果条件不满足，舍弃该方案，board[row][col] 置 0
         board[row][col] = 0
-    
 
+ROWS = 5
+COLS = 5
+# 创建一个 5x5 的棋盘
+board = [[0] * COLS for _ in range(ROWS)]
+print(board)
 total = 0
-SIZE = 5
-# 初始化棋盘
-board = [[0] * SIZE for _ in range(SIZE)]
-print("raw board: []".format(board))
-# 坐标 (0, 0) 开始起跳
-patrol(board, 0, 0)
-
+horse_run(board, 0, 0)
 
 
 
