@@ -4,7 +4,7 @@ version:
 Author: jiaqianjing
 Date: 2020-03-01 11:53:13
 LastEditors: jiaqianjing
-LastEditTime: 2020-03-01 11:59:05
+LastEditTime: 2020-04-14 13:51:23
 """
 class ListNode:
     def __init__(self, val)
@@ -28,15 +28,14 @@ class Solution:
         while l2:
             temp_list.append(l2.val)
             l2 = l2.next
-
+        # 排序
         temp_list.sort()
 
-        new_list_node = ListNode(temp_list[0])
-        new_list_head = new_list_node
-
-        for i range(1, len(temp_list)):
-            new_list_node.next = temp_list[i]
-            new_list_node = new_list_node.next
+        # 创建一个新链表存放结果
+        head = ListNode(0)
+        node = head
+        for i in temp_list:
+            node.next = ListNode(i)
+            node = node.next
         
-        new_list_node.next = None
-        return new_list_head
+        return head.next
