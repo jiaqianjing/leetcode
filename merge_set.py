@@ -5,7 +5,7 @@ version:
 Author: jiaqianjing
 Date: 2020-04-07 15:18:45
 LastEditors: jiaqianjing
-LastEditTime: 2020-04-10 13:48:49
+LastEditTime: 2020-04-14 18:50:16
 """
 
 """
@@ -19,7 +19,7 @@ LastEditTime: 2020-04-10 13:48:49
 class Solution:
     def merge_set_list(self, l):
         # 根据输入的 list，转成一组由 frozenset 的集合
-        pool = set(map(frozenset, l))
+        pool = map(frozenset, l)
         # 创建一个 list 存转换后结果
         result = []
         while pool:
@@ -43,19 +43,3 @@ s = Solution()
 res = s.merge_set_list(test)
 print("res: {}".format(res))
 
-
-def merge_set(list):
-    pool = set(map(frozenset, list))
-    res = []
-    while pool:
-        res.append(set(pool.pop()))
-        while True:
-            for i in pool:
-                if res[-1] & i:
-                    res[-1] |= i:
-                    pool.remove(i)
-                    break
-            else:
-                break
-    return res
-        

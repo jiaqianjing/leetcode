@@ -5,7 +5,7 @@ version:
 Author: jiaqianjing
 Date: 2020-04-14 12:14:33
 LastEditors: jiaqianjing
-LastEditTime: 2020-04-14 12:24:32
+LastEditTime: 2020-04-14 17:06:56
 """
 
 """
@@ -27,6 +27,7 @@ class Solution(object):
         """
         flag = 1 if x >= 0 else -1
         res = int(str(abs(x))[::-1]) * flag
+        # 判断 revert 后的数字是否在整数范围内 (-2^31, 2^31-1)
         if -2 ** 31 < res < 2 ** 31 -1:
             return res
         else:
