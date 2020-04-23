@@ -5,7 +5,7 @@ version:
 Author: jiaqianjing
 Date: 2020-04-15 13:56:38
 LastEditors: jiaqianjing
-LastEditTime: 2020-04-15 15:37:53
+LastEditTime: 2020-04-22 15:53:39
 """
 
 """
@@ -50,6 +50,7 @@ class Solution(object):
         zeroes_pos = [(r, c) for r in range(rows) for c in range(cols) if matrix[r][c] == 0]
         # 将所有的 0 坐标添加进初始队列中 
         # deque (double-ended queue) --> 双边队列, 具有队列和栈的性质，在 list 的基础上增加了移动、旋转和增删等
+        # deque 数据类型来自于 collections 模块，支持从头和尾部的常数时间 append/pop 操作。若使用 Python 的 list，通过 list.pop(0) 去除头部会消耗 O(n)O(n) 的时间。
         q = collections.deque(zeroes_pos)
         # 暂存当前已经遍历过点
         seen = set(zeroes_pos)
